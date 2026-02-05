@@ -1,0 +1,76 @@
+package studenttracker;
+import java.util.Scanner;
+
+public class Student {
+
+	String name;
+	int id;
+	int marks;
+	char grade;
+
+	static int totalStudents = 0;
+	final String COURSE_NAME = "Java Programming";
+
+	Student() {
+  	name = "Not Assigned";
+  	id = 0;
+  	marks = 0;
+  	grade = 'N';
+  	totalStudents++;
+	}
+
+	Student(String name, int id, int marks) {
+  	this.name = name;
+  	this.id = id;
+  	this.marks = marks;
+  	this.grade = calculateGrade(marks);
+  	totalStudents++;
+	}
+
+	char calculateGrade(int marks) {
+  	if (marks >= 90)
+  	return 'A';
+  	else if (marks >= 75)
+  	return 'B';
+  	else if (marks >= 60)
+  	return 'C';
+  	else
+  	return 'D';
+	}
+
+	void displayDetails() {
+  	System.out.println("\n--- Student Performance Details ---");
+  	System.out.println("Course Name : " + COURSE_NAME);
+  	System.out.println("Student Name: " + name);
+  	System.out.println("Student ID : " + id);
+  	System.out.println("Marks : " + marks);
+  	System.out.println("Grade : " + grade);
+	}
+}
+package studenttracker;
+
+import java.util.Scanner;
+
+public class StudentPerformance {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Enter Student Name: ");
+		String name = sc.nextLine();
+
+		System.out.print("Enter Student ID: ");
+		int id = sc.nextInt();
+
+		System.out.print("Enter Marks: ");
+		int marks = sc.nextInt();
+
+		Student s1 = new Student(name, id, marks);
+
+		s1.displayDetails();
+
+		System.out.println("\nTotal Students Created: " + Student.totalStudents);
+
+		sc.close();
+	}
+}
